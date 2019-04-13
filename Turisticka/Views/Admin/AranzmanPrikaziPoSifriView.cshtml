@@ -1,0 +1,76 @@
+﻿@using MajaIvana.Models;
+@model MajaIvana.Models.AranzmanViewModel
+<!--Branislava-->
+@{
+    ViewBag.Title = "Prikaz aranžmana po šifri";
+}
+<div class="container">
+    <div>
+        <div class="panel-heading">
+            <h1>Spisak aranžmana: </h1>
+        </div>
+
+        @Html.Partial("_ParcijalniPrikaziAranzmane") <!--izbrisala onu ; koja se videla na ekranu-->
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1>Izmeni aranzman </h1>
+                </div>
+
+                <div class="panel-body">
+
+                    @using (Html.BeginForm("AranzmanIzmeniObrisi", "Admin", FormMethod.Post, new { @class = "form" }))
+                    {
+                        @Html.HiddenFor(m => m.SifraAranzmana, Model.SifraAranzmana)
+                        @*<div class="form-group">
+                                @Html.LabelFor(m => m.AranzmanID, "Šifra aranzmana")
+                                @Html.TextBoxFor(m => m.AranzmanID, Model.AranzmanID.ToString(), new { @class = "form-control" })
+                            </div>*@
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.NazivHotela, "Naziv hotela")
+                            @Html.TextBoxFor(m => m.NazivHotela, Model.NazivHotela, new { @class = "form-control", @disabled = "disabled" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.VrstaUsluge, "Vrsta usluge")
+                            @Html.TextBoxFor(m => m.VrstaUsluge, Model.VrstaUsluge, new { @class = "form-control", @disabled = "disabled" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.TerminPutovanja, "Termin putovanja")
+                            @Html.TextBoxFor(m => m.TerminPutovanja, Model.TerminPutovanja, new { @class = "form-control", @disabled = "disabled" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Cena, "Cena")
+                            @Html.TextBoxFor(m => m.Cena, Model.Cena.ToString(), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Cena, null, new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Rapolozivost, "Rapolozivost")
+                            @Html.TextBoxFor(m => m.Rapolozivost, Model.Rapolozivost.ToString(), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Rapolozivost, null, new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Aktivan, "Aktivan")
+                            @Html.TextBoxFor(m => m.Aktivan, Model.Aktivan.ToString(), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Aktivan, null, new { @class = "text-danger" })
+                        </div>
+
+                        <input type="submit" class="btn btn-default" name="BtnSubmit" value="Obriši" />
+                        <input type="submit" class="btn btn-default" name="BtnSubmit" value="Izmeni" />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

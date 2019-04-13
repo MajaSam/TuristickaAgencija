@@ -1,0 +1,74 @@
+﻿@model MajaIvana.Models.Aranzmani
+<!--Maja-->
+@{ 
+    ViewBag.Title = "AranzmaniDodajView";
+
+}
+      
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1>Dodaj aranžman: </h1>
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("AranzmaniDodajView", "Admin", FormMethod.Post, new { @class = "form" }))
+                    {
+                        <div class="form-group">
+                            
+                            @Html.LabelFor(m => m.AranzmanID, "Šifra aranžmana")
+                            @Html.TextBoxFor(m => m.AranzmanID, null, new { @class = "form-control", placeholder = "Šifra aranžmana" })
+                            @Html.ValidationMessageFor(m => m.AranzmanID, null, new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-group">
+                            <p> Grad i drzava</p>
+                            @Html.DropDownList("listaHotela", (IEnumerable<SelectListItem>)ViewBag.hoteli, new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-group">
+                            <p> Vrsta usluge</p>
+                            @Html.DropDownList("listaUsluga", (IEnumerable<SelectListItem>)ViewBag.usluge, new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-group">
+                            <p> Termin putovanja</p>
+                            @Html.DropDownList("listaTermina", (IEnumerable<SelectListItem>)ViewBag.termini, new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Cena, "Cena aranžmana")
+                            @Html.TextBoxFor(m => m.Cena, null, new { @class = "form-control", placeholder = "Cena aranžmana" })
+                            @Html.ValidationMessageFor(m => m.Cena, null, new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Raspolozivost, "Raspoloživost")
+                            @Html.TextBoxFor(m => m.Raspolozivost, null, new { @class = "form-control", placeholder = "Raspoloživost" })
+                            @Html.ValidationMessageFor(m => m.Raspolozivost, null, new { @class = "text-danger" })
+                        </div>
+
+                        <input type="submit" class="btn btn-default" value="Dodaj" />
+
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div>
+        <div class="panel-heading">
+            <h1>Spisak aranžmana: </h1>
+        </div>
+
+        @Html.Partial("_ParcijalniPrikaziAranzmane") <!--izbrisala onu ; koja se videla na ekranu-->
+    </div>
+</div>
+
+
+

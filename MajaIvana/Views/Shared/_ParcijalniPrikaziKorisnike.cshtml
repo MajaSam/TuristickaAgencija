@@ -1,0 +1,70 @@
+﻿@using MajaIvana.Models;
+@model MajaIvana.Models.Korisnici
+
+@{
+    ViewBag.Title = "RadnikMainView";
+}
+
+<h2>RadnikView</h2>
+<!--Maja-->
+<div class="container">
+    <div class="panel-heading">
+        <h1>Spisak aranžmana: </h1>
+    </div>
+    @Html.Partial("_ParcijalniPrikaziAranzmane")
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-4">
+            <span>Radnik</span>
+        </div>
+    </div>
+</div>
+<!--Branislava-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h2>Korisnici</h2></div>
+                <div class="panel-body">
+                    @if (Radnik.PrikaziKorisnike().Count == 0)
+                    {
+                        <p>Trenutno nemamo nijednog korisnika.</p>
+                    }
+                    else
+                    {
+                        int brojac = 1;
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <td>Redni broj</td>
+                                    <td>Šifra korisnika</td>
+                                    <td>Ime korisnika</td>
+                                    <td>Prezime korisnika</td>
+                                    <td>Korisnicko ime</td>
+                                    <td>Lozinka</td>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Korisnici korisnik in Radnik.PrikaziKorisnike())
+                                {
+                                    <tr>
+                                        <td>@brojac</td>
+                                        <td>@korisnik.KorisnikID</td>
+                                        <td>@korisnik.Ime</td>
+                                        <td>@korisnik.Prezime</td>
+                                        <td>@korisnik.KorisnickoIme</td>
+                                        <td>@korisnik.Lozinka</td>
+                                    </tr>
+                                    brojac++;
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

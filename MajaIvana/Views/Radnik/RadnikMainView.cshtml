@@ -1,0 +1,112 @@
+﻿@using MajaIvana.Models;
+@model MajaIvana.Models.Korisnici
+
+@{
+    ViewBag.Title = "RadnikMainView";
+
+}
+
+<h2>RadnikView</h2>
+<!--Maja-->
+<div class="container">
+        <div class="panel-heading">
+            <h1>Spisak aranžmana: </h1>
+        </div>
+        @Html.Partial("_ParcijalniPrikaziAranzmane")
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-4">
+            <span>Radnik</span>
+        </div>
+    </div>
+</div>
+<!--Branislava-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h2>Korisnici</h2></div>
+                <div class="panel-body">
+                    @if (Radnik.PrikaziKorisnike().Count == 0)
+                    {
+                        <p>Trenutno nemamo nijednog korisnika.</p>
+                    }
+                    else
+                    {
+                        int brojac = 1;
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <td>Redni broj</td>
+                                    <td>Šifra korisnika</td>
+                                    <td>Ime korisnika</td>
+                                    <td>Prezime korisnika</td>
+                                    <td>Korisnicko ime</td>
+                                    <td>Lozinka</td>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Korisnici korisnik in Radnik.PrikaziKorisnike())
+                                {
+                                    <tr>
+                                        <td>@brojac</td>
+                                        <td>@korisnik.KorisnikID</td>
+                                        <td>@korisnik.Ime</td>
+                                        <td>@korisnik.Prezime</td>
+                                        <td>@korisnik.KorisnickoIme</td>
+                                        <td>@korisnik.Lozinka</td>
+                                    </tr>
+                                    brojac++;
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h2>Dodaj korisnika</h2></div>
+            <div class="panel-body">
+                @using (Html.BeginForm("DodajKorisnika", "Radnik", FormMethod.Post, new { @class = "form" }))
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.KorisnikID, "Sifra korisnika")
+                        @Html.TextBoxFor(m => m.KorisnikID, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.KorisnikID, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Ime, "Ime")
+                        @Html.TextBoxFor(m => m.Ime, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Ime, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Prezime, "Prezime")
+                        @Html.TextBoxFor(m => m.Prezime, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Prezime, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.KorisnickoIme, "Korisnicko ime")
+                        @Html.TextBoxFor(m => m.KorisnickoIme, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.KorisnickoIme, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Lozinka, "Lozinka")
+                        @Html.TextBoxFor(m => m.Lozinka, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Lozinka, null, new { @class = "text-danger" })
+                    </div>
+                    
+                    <input type="submit" value="Dodaj" class="btn btn-primary" />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

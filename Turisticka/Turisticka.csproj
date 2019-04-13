@@ -155,8 +155,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RadnikController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -180,6 +182,7 @@
     <Compile Include="Models\Aranzmani.cs">
       <DependentUpon>AgencijaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AranzmanViewModel.cs" />
     <Compile Include="Models\Destinacije.cs">
       <DependentUpon>AgencijaModel.tt</DependentUpon>
     </Compile>
@@ -189,6 +192,8 @@
     <Compile Include="Models\Korisnici.cs">
       <DependentUpon>AgencijaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\Radnik.cs" />
     <Compile Include="Models\Rezervacije.cs">
       <DependentUpon>AgencijaModel.tt</DependentUpon>
     </Compile>
@@ -260,6 +265,12 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Admin\AdminMainView.cshtml" />
+    <Content Include="Views\Admin\AranzmaniDodajView.cshtml" />
+    <Content Include="Views\Admin\AranzmanPrikaziPoSifriView.cshtml" />
+    <Content Include="Views\Shared\_MainLayout.cshtml" />
+    <Content Include="Views\Shared\_ParcijalniPrikaziAranzmane.cshtml" />
+    <Content Include="Views\Shared\_ParcijalniPrikaziKorisnike.cshtml" />
+    <Content Include="Views\Radnik\RadnikMainView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

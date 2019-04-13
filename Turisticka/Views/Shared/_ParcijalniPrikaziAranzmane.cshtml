@@ -1,0 +1,51 @@
+﻿@using MajaIvana.Models
+@model MajaIvana.Models.AranzmanViewModel
+<!--Maja-->
+
+<div class="panel panel-primary">
+    <div class="panel-heading"></div>
+    <div class="panel-body">
+        @if (Admin.PrikaziAranzmane().Count == 0)
+        {
+            <p>Trenutno nema nijednog aranžmana</p>
+        }
+
+        else
+        {
+            int brojac = 0;  
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <td>Redni broj</td>
+                        <td>Šifra aranžmana</td>
+                        <td>Naziv hotela</td>
+                        <td>Vrsta usluge</td>
+                        <td>Termin</td>
+                        <td>Cena</td>
+                        <td>Raspoloživost</td>
+                        <td>Aktivan</td>
+                    </tr>
+
+
+                </thead>
+                <tbody>
+                    @foreach (AranzmanViewModel aranzman in Admin.PrikaziAranzmane())
+                    {
+                        brojac++;
+                        <tr>
+                            <td>@brojac</td>
+                            <td>@aranzman.SifraAranzmana</td>
+                            <td>@aranzman.NazivHotela</td>
+                            <td> @aranzman.VrstaUsluge</td>
+                            <td> @aranzman.TerminPutovanja</td>
+                            <td> @aranzman.Cena</td>
+                            <td> @aranzman.Rapolozivost</td>
+                            <td>@aranzman.Aktivan</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+

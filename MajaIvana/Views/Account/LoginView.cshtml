@@ -1,0 +1,42 @@
+﻿@model MajaIvana.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Logovanje";
+    //Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<div class=" container">
+    <div class="row">
+        <div class="col-md-8">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">Login</div>
+                <div class="panel-body">
+                    <div>
+                        @using (Html.BeginForm())
+                        {
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.KorisnickoIme, "Korisničko ime")
+                                @Html.TextBoxFor(m => m.KorisnickoIme, null, new { @class = "form-control", placeholder = "korisničko ime" })
+                                @Html.ValidationMessageFor(m => m.KorisnickoIme, null, new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Lozinka, "Lozinka")
+                                @Html.PasswordFor(m => m.Lozinka, new { @class = "form-control", placeholder = "lozinka" })
+                                @Html.ValidationMessageFor(m => m.Lozinka, null, new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.PotvrdaLozinke, "PotvrdaLozinke")
+                                @Html.PasswordFor(m => m.PotvrdaLozinke, new { @class = "form-control", placeholder = "potvrda lozinke" })
+                                @Html.ValidationMessageFor(m => m.PotvrdaLozinke, null, new { @class = "text-danger" })
+                            </div>
+                            <input type="submit" value="Prijava" class="btn btn-primary" />
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

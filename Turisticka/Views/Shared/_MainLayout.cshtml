@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <header class="page-header row">
+        <h1 class="text-primary text-center">Sistem za unos aranzmana</h1>
+        <div class="col-md-2 col-md-offset-8 text-right">
+            Zdravo, @User.Identity.Name
+            @Html.ActionLink("Odjava", "Logout", "Account", null, new { @class = "text-right" })
+        </div>
+    </header>
+
+        <div class=" container">
+            <div class="row">
+                <div class="col-md-10">
+                    @RenderBody()
+                </div>
+                <div class="col-md-4">
+                    @if (IsSectionDefined("SideBar"))
+                    {
+                        @RenderSection("SideBar", true);
+                    }
+                </div>
+            </div>
+        </div>
+ 
+    <script src="~/Scripts/main.js"></script>
+
+
+    <footer class="row">
+        <p class="text-center">Copyright  &copy; Agencija TRIO 2019.</p>
+    </footer>
+
+    <script src="~/Scripts/main.js"></script>
+</body>
+</html>
