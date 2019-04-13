@@ -1,0 +1,156 @@
+﻿@using Turisticka.Models;
+@model Turisticka.Models.AdminViewModel
+
+@{
+    ViewBag.Title = "AdminMainView";
+}
+
+<h2>AdminView</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-6">
+            <span>Admin</span>
+            <button id="btnDodajAranzman" type="button">Dodaj aranzman</button>
+            <button id="btnIzmeniAranzman" type="button">Izmeni aranzman</button>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h2>Destinacije</h2></div>
+                <div class="panel-body">
+                    @if (Admin.PrikaziDestinacije().Count == 0)
+                    {
+                        <p>Trenutno nemamo nijednu destinaciju u ponudi.</p>
+                    }
+                    else
+                    {
+                        int brojac = 1;
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <td>Redni broj</td>
+                                    <td>Šifra destinacije</td>
+                                    <td>Zemlja</td>
+                                    <td>Grad</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Destinacije destinacija in Admin.PrikaziDestinacije())
+                                {
+                                    <tr>
+                                        <td>@brojac</td>
+                                        <td>@destinacija.DestinacijaID</td>
+                                        <td>@destinacija.Zemlja</td>
+                                        <td>@destinacija.Grad</td>
+                                    </tr>
+                                    brojac++;
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h2>Dodaj destinaciju</h2></div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("DodajDestinaciju", "Admin", FormMethod.Post, new { @class = "form" }))
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.DestinacijaID, "Sifra destinacije")
+                            @Html.TextBoxFor(m => m.DestinacijaID, null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.DestinacijaID, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Zemlja, "Ime zemlje")
+                            @Html.TextBoxFor(m => m.Zemlja, null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Zemlja, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Grad, "Ime grada")
+                            @Html.TextBoxFor(m => m.Grad, null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Grad, null, new { @class = "text-danger" })
+                        </div>
+                        <input type="submit" value="Dodaj" class="btn btn-default" />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h2>Hoteli</h2></div>
+                <div class="panel-body">
+                    @if (Admin.PrikaziHotele().Count == 0)
+                    {
+                        <p>Trenutno nemamo nijedan hotel u ponudi.</p>
+                    }
+                    else
+                    {
+                        int brojac = 1;
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <td>Redni broj</td>
+                                    <td>Šifra hotela</td>
+                                    <td>Naziv</td>
+                                    <td>Broj zvezdica</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Hoteli hotel in Admin.PrikaziHotele())
+                                {
+                                    <tr>
+                                        <td>@brojac</td>
+                                        <td>@hotel.HotelID</td>
+                                        <td>@hotel.Naziv</td>
+                                        <td>@hotel.BrojZvezdica</td>
+                                    </tr>
+                                    brojac++;
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h2>Dodaj hotel</h2></div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("DodajHotel", "Admin", FormMethod.Post, new { @class = "form" }))
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(h => h.HotelID, "Sifra hotela")
+                            @Html.TextBoxFor(h => h.HotelID, null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(h => h.HotelID, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(h => h.Naziv, "Naziv hotela")
+                            @Html.TextBoxFor(h => h.Naziv, null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(h => h.Naziv, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(h => h.BrojZvezdica, "Broj zvezdica")
+                            @Html.TextBoxFor(h => h.BrojZvezdica, null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(h => h.BrojZvezdica, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.DropDownList("listaDestinacijaID", (IEnumerable<SelectListItem>)ViewBag.destinacije, new { @class = "form-control" })
+                        </div>
+                        <input type="submit" value="Dodaj" class="btn btn-default" />
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
